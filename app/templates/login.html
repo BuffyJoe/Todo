@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+.my-form{
+    margin-top: 100px;
+    margin-left: 35%;
+    border: black solid;
+    width: fit-content;
+    padding: 50px;
+    background-color: lightblue;    
+}
+
+.my-form .al{
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+h1{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+</style>
+{% if login %}
+<form action="" method="post" class="my-form">
+    {% csrf_token %}
+    <h1>Welcome</h1>
+    <div>
+    <label for="username"> Username </label>
+    <input type="text" name="username" placeholder="Enter Username....">
+    </div>
+    <br>
+    <div>
+    <label for="username"> Password </label>
+    <input type="password" name="password" placeholder="Password.......">
+    </div>
+    <br>
+    <input type="submit" value="Log-in"> 
+    <a href="{% url 'home' %}" class="al">Back</a> <br>
+    <br> <br>
+    <a href="{% url 'sign-up' %}"><i> Don't have an account? Sign-up instead </i></a>
+</form>
+{% endif %}
+
+{% if logout %}
+<form action="" method="post" class="my-form">
+    {% csrf_token %}
+    <h4>Log-out @{{request.user.username}}</h4>
+    <input type="SUbmit" value="Log-out"> <a href="{% url 'home' %}" class="al">Back</a>
+</form>
+{% endif %}
+
+{% endblock %}

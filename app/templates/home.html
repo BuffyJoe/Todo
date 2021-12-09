@@ -1,0 +1,144 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+a{
+            text-decoration: none;
+            color: blue;
+        }
+body{
+            background-color: whitesmoke;
+            position: relative;
+        }
+        
+.div{
+    position: absolute;
+    right: 20px;
+}
+.div input{
+    font-size: 20px;
+    padding: 10px;
+}
+
+.all{
+    position: absolute;
+    margin-left: 225px;
+    text-align: left;
+    border: solid black;
+    width: max-content;
+    padding: 30px;
+    padding-right: 20px;
+    background-color: lightblue;
+}
+h1{
+        text-decoration: none;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color:black;
+        font-size: 20px;
+        text-align: center;
+    }
+    
+
+.date{
+    position: absolute;
+    top: 0;
+}
+
+p{
+    border-bottom: solid black;
+}
+small{
+    font-size: 15px;
+}
+    </style>
+</head>
+<body>
+        <span class="date" >
+            <form method="post" >
+                {% csrf_token %}
+                <label for="end">Go-to End-Date</label> <br>
+                <input type="date" name="end" id=""> <br>
+                <input type="Submit" value="Go-to" id=""> <br>
+            </form>
+        </span>
+    
+<br>
+    
+    <div class="all">
+        <span> <b> To view all (Completed/Expired) Tasks for: {{today.date}} <br> <a href="{% url 'exp' %}">Click Here</a> </b></span>
+        <h1>All Activities </h1> <hr>
+    <table>
+    
+    {% for activity in activities %}
+    <p>
+    {% if activity.expired == False and activity.completed == False%} 
+    <small> <a href="{% url 'edit' activity.id %}"> Edit </a> </small>
+    <large> <b>.</b></large>
+    {% endif %} 
+    <small> <a href="{% url 'delete' activity.id %}"> Delete </a> </small> <br>
+    <large> <b>  {{activity.todo}}  </b> </large> 
+    {% if activity.completed == True %} <span> <small> <i> . (completed)</i></small></span>
+    {% elif activity.expired == True and activity.completed == False%} <span> <small> <i> . (expired)</i></small></span>
+    {% elif activity.expired == False and activity.completed == False%} <span> <small> <i> . (ongoing)</i></small></span>
+    {% endif %}<br> 
+    <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
+    <small> <b> {{activity.description}} </b> </small>
+    </p> 
+    {% endfor %}
+    <h3> You are {{percent}}% done</h3>
+    </ul>
+    </table>
+    <br>
+    <hr>
+    <h1>Uncompleted Activities </h1> <hr>
+    <table>
+    {% for activity in activities %}
+    {% if activity.completed != True and activity.expired == False %}
+        <p>
+                <small> <a href="{% url 'edit' activity.id %}"> Edit </a> </small> 
+                <large> <b> . </b> </large>
+    <small> <a href="{% url 'delete' activity.id %}"> Delete </a> </small> <br>
+    <large> <b> {{activity.todo}} </b> </large> <span> <small> <i> . (ongoing)</i></small></span><br> 
+    <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
+    <small> <b> {{activity.description}} </b> </small> <br>
+    </p>
+    </table>
+
+    {% endif %}
+    {% endfor %}
+    </ul>
+    <hr>
+    
+    <h1>Completed Activities </h1> <hr>
+    <table>
+    {% for activity in activities %}
+    {% if activity.completed == True %}
+    <p>
+        <small> <a href="{% url 'delete' activity.id %}"> Delete </a> </small> <br>
+   
+    <large> <b> {{activity.todo}} </b> </large> <span> <small> <i> . (completed)</i></small></span><br> 
+    <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
+    <small> <b> {{activity.description}} </b> </small>
+    </p>
+    {% endif %}
+    {% endfor %}
+    </ul>
+    <hr>
+
+    <h1>Expired Activities </h1> <hr>
+    <table>
+    {% for activity in activities %}
+    {% if activity.expired == True and activity.completed == False %}
+    <p>        
+    <small> <a href="{% url 'delete' activity.id %}"> Delete </a> </small> <br>
+    <large> <b> {{activity.todo}} </b> </large>  <span> <small> <i> . (expired)</i></small></span> <br> 
+    <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
+    <small> <b> {{activity.description}} </b> </small>
+    </p> 
+</table>
+    {% endif %}
+    {% endfor %}
+
+</div>
+</body>
+</html>
+{% endblock %}

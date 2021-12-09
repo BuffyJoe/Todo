@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        .nav{
+            padding: 10px;
+            position: absolute;
+            right: 20px;
+            border: solid black;
+            background-color: blanchedalmond;
+            top: 20px;
+        }
+
+        .nav-items{
+            display: inline-block;
+            padding-left: 20px;
+            text-align: center;
+            position: sticky;
+        }
+
+        .nav-items a{
+            font-size: 15px;
+            text-decoration: none;
+            color: black;
+        }
+        .nav-items a:hover{
+            font-size: 18px;
+        }
+    </style>
+    <div class="nav">
+        <span class="nav-items">
+            <a href="{% url 'home' %}"> Home </a>
+        </span>
+        {% if request.user.is_authenticated %}
+        <span class="nav-items">
+            <a href="{% url 'log-out' %}">Log-out</a>
+        </span>
+        <span class="nav-items">
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="todo" placeholder="Search Activity">
+            </form>
+        </span>
+
+        <span class="nav-items">
+            <a href="{% url 'create' %}">Add Task</a>
+        </span>
+        
+        {% else %}
+        <span class="nai-items">
+            <a href="{% url 'log-in' %}">Log-in</a>
+        </span>
+        {% endif %}
+    </div>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

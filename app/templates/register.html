@@ -1,0 +1,131 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    .form{
+    background-color: lightblue;
+    color: black;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    grid-area: form;
+    padding-bottom: 20px;
+    
+}
+.form-item{
+    border: solid;
+    border-bottom: none;
+    border-top: none;
+    padding: 0px 20px 10px 20px;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    box-shadow: 3px 3px 3px black;
+}
+
+.form-item input{
+    width: 20rem;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+}
+
+.form-item input:focus{
+    width: 20rem;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
+
+.first-form{
+    border-top: solid;
+    margin-top: 20px;
+    /* padding-top: 10px; */
+}
+.first-form h5{
+    font-size: 20px;
+    color: blue;
+    text-decoration: dashed;
+    padding-bottom: 0%;
+}
+.first-form h5:hover{
+    color: red;
+}
+.end-form{
+    border-bottom: solid;
+    padding-bottom: 30px;
+    text-align: left;
+}
+.end-form:hover{
+    text-decoration: none;
+    font-size: initial;
+}
+::-webkit-input-placeholder{
+    text-align: center;
+    opacity: 0.8;
+    font-size: 17px;
+    color: white;
+}
+.end-form-div{
+    padding-left: 30px;
+}
+.end-form-div input{
+    width: auto;
+    justify-content: left;
+    background-color: white;
+    color: black;
+}
+
+button{
+    height: 2rem;
+    width: 30%;
+    color: black;
+    background-color: white;
+}
+
+button:hover{
+    background-color: green;
+    color: white;
+}
+
+</style>
+
+
+<div class="form">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-item first-form">
+            <h5>Register on iBlogger</h5>
+            <input type="text" name="first_name" required> <br>
+            <label for="first-name"> First Name</label>
+        </div>
+        <div class="form-item">
+            <input type="text" name="last_name"> <br>
+            <label for="Last-name"> Last Name</label>
+        </div>
+        <div class="form-item">
+            <input type="text" name="username" required placeholder="select a username"> <br>
+            <label for="username"> Username</label>
+        </div>
+        <div class="form-item">
+            <input type="email" name="email" required placeholder="something@example.com"> <br>
+            <label for="email" > email address </label>
+        </div>
+        <div class="form-item">
+            <input type="password" name="password1" placeholder="choose password" required> <br>
+            <label for="password"> Password</label>
+        </div>
+        <div class="form-item">
+            <input type="password" name="password2" placeholder="confirm password" required> <br>
+            <label for="password"> Confirm password</label> <br>
+            <button type="submit" value="Sign-up">Sign-up</button>
+        </div>
+        <div class="form-item end-form">
+            <div class="end-form-div">
+                <a href="{% url 'log-in' %}"><i> Already have an Account? Log in </i></a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    a{
+                text-decoration: none;
+                color: blue;
+            }
+    body{
+                background-color: whitesmoke;
+                position: relative;
+            }
+            
+    .div{
+        position: absolute;
+        right: 20px;
+    }
+    .div input{
+        font-size: 20px;
+        padding: 10px;
+    }
+    
+    .all{
+        position: absolute;
+        margin-left: 225px;
+        text-align: left;
+        border: solid black;
+        width: max-content;
+        padding: 30px;
+        padding-right: 20px;
+        background-color: lightblue;
+    }
+    h1{
+        text-decoration: none;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color:black;
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .date{
+        position: absolute;
+        top: 0;
+    }
+        </style>
+<body>
+
+    <div class="all">
+    {% if activities %}
+
+    <h1>Undone tasks for <br> {{today.date}} are: </h1>
+    <hr>
+    <ul>
+    {% for activity in activities %}
+   <p>
+    <large> <b> <a href="{% url 'edit' activity.id %}"> {{activity.todo}} </a> </b> </large> {% if activity.completed != True and activity.expired == False %} <span> <small> <i> . (ongoing)</i></small></span> {% endif %}<br> 
+    <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
+    <small> <b> {{activity.description}} </b> </small>
+    </p>
+    {% endfor %} 
+    </ul>
+
+    <h1>Completed tasks for <br> {{today.date}}</h1>  <hr>
+    <ul>
+    {% for activity in all_activities %}
+    {% if activity.completed == True %}
+    <p>
+    <large> <b>  {{activity.todo}} </b> </large> {% if activity.completed == True %} <span> <small> <i> . (completed)</i></small></span> {% endif %}<br> 
+    <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
+    <small> <b> {{activity.description}} </b> </small>
+    </p>
+    {% endif %}
+    {% endfor %}
+    </ul>
+
+    <h1>All tasks for {{today.date}}</h1> <hr>
+    <ul>
+    {% for activity in all_activities %}
+    
+    <p>
+    <large> <b> {{activity.todo}} </b> </large> 
+    {% if activity.completed == True %} <span> <small> <i> . (completed)</i></small></span>
+    {% elif activity.expired == True and activity.completed == False%} <span> <small> <i> . (expired)</i></small></span>
+    {% elif activity.expired == False and activity.completed == False%} <span> <small> <i> . (ongoing)</i></small></span>
+    {% endif %}<br> 
+    <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
+    <small> <b> {{activity.description}} </b> </small>
+    </p>
+    
+    {% endfor %}
+    <h3> You are {{percent}}% done</h3>
+</ul>
+{% else %}
+<h1>There are no Tasks for Today </h1>
+<a href="{% url 'home' %}">Go Back </a>
+{% endif %}
+</div>
+{% endblock %}
+</body>
+</html>
