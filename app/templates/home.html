@@ -17,6 +17,7 @@
     
     <div class="all">
         <span> <b> To view all (Completed/Expired) Tasks for: {{today.date}} <br> <a href="{% url 'exp' %}">Click Here</a> </b></span>
+        {% if activities %}
         <h1>All Activities </h1> <hr>
     <table>
     
@@ -90,6 +91,7 @@
     {% endif %}
     {% endfor %}
 
+    {% endif %}
 </div>
 </body>
 </html>
