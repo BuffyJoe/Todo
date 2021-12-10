@@ -55,22 +55,6 @@ def index(request):
         # 'expired': expired,
     }
     return render(request, 'home.html', context)
-
-def signup(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        try:
-            user = User.objects.get(username=username)
-        except:
-            messages.error(request, 'User does not exist')
-
-        user = authenticate(request, username=username, password=password) 
-        if user is not None:
-            login(request, user)
-            return render(request, 'home.html', {})
-    return render(request, 'sign-up.html', {})
     
 def edit(request, pk):
      todo = ToDo.objects.get(id=pk)
@@ -169,7 +153,7 @@ def register(request):
             login(request, user)              
             return redirect('home')
         else:
-            form = UserCreationForm(request.POST)
+            messages.error(request, 'User does not exist')
         
      return render(request, 'register.html', {'form' : form})
 
