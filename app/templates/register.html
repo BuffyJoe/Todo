@@ -3,41 +3,10 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/todo.css' %}">
 
-<div class="form">
+<div class="all">
     <form action="" method="post">
         {% csrf_token %}
-        <div class="form-item first-form">
-            <h5>Register on iBlogger</h5>
-            <input type="text" name="first_name" required> <br>
-            <label for="first-name"> First Name</label>
-        </div>
-        <div class="form-item">
-            <input type="text" name="last_name"> <br>
-            <label for="Last-name"> Last Name</label>
-        </div>
-        <div class="form-item">
-            <input type="text" name="username" required placeholder="select a username"> <br>
-            <label for="username"> Username</label>
-        </div>
-        <div class="form-item">
-            <input type="email" name="email" required placeholder="something@example.com"> <br>
-            <label for="email" > email address </label>
-        </div>
-        <div class="form-item">
-            <input type="password" name="password1" placeholder="choose password" required> <br>
-            <label for="password"> Password</label>
-        </div>
-        <div class="form-item">
-            <input type="password" name="password2" placeholder="confirm password" required> <br>
-            <label for="password"> Confirm password</label> <br>
-            <button type="submit" value="Sign-up">Sign-up</button>
-        </div>
-        <div class="form-item end-form">
-            <div class="end-form-div">
-                <a href="{% url 'log-in' %}"><i> Already have an Account? Log in </i></a>
-            </div>
-        </div>
+        {{form.as_p}}
     </form>
 </div>
-
 {% endblock %}

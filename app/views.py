@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from .models import ToDo
-from .forms import CreateToDo, ToDoForm
+from .forms import CreateToDo, ToDoForm, registerform
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
@@ -156,7 +156,7 @@ def logoutpage(request):
 def register(request):
      if request.user.is_authenticated:
           return redirect('home')
-     form = UserCreationForm()
+     form = registerform()
      if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
