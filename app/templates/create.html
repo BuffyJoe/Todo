@@ -1,63 +1,9 @@
 {% extends 'main.html' %}
+{% load static %}
+
 {% block content %}
-<style>
-a{
-            text-decoration: none;
-            color: blue;
-        }
-body{
-            background-color: whitesmoke;
-            position: relative;
-        }
-        
-.div{
-    position: absolute;
-    right: 20px;
-}
-.div input{
-    font-size: 20px;
-    padding: 10px;
-}
+<link rel="stylesheet" href="{% static 'css/todo.css' %}">
 
-.all-create{
-    position: absolute;
-    margin-left: 50px;
-    margin-top: 10px;
-    text-align: left;
-    border: solid black;
-    width: max-content;
-    padding: 30px;
-    padding-right: 20px;
-    background-color: lightblue;
-}
-h1{
-        text-decoration: none;
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        color:black;
-        font-size: 20px;
-        text-align: center;
-    }
-    
-
-.date{
-    position: absolute;
-    top: 0;
-}
-
-p{
-    border-bottom: solid black;
-}
-small{
-    font-size: 15px;
-}
-label{
-    color: red;
-    font-size: 20px;
-}
-.small{
-    font-size: initial;
-}
-    </style>
 <body>
     <div class="all-create">
         <h1>Create new Task</h1>

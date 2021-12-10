@@ -1,0 +1,24 @@
+    .nav{
+        padding: 10px;
+        position: absolute;
+        right: 20px;
+        border: solid black;
+        background-color: blanchedalmond;
+        top: 20px;
+    }
+
+    .nav-items{
+        display: inline-block;
+        padding-left: 20px;
+        text-align: center;
+        position: sticky;
+    }
+
+    .nav-items a{
+        font-size: 15px;
+        text-decoration: none;
+        color: black;
+    }
+    .nav-items a:hover{
+        font-size: 18px;
+    }

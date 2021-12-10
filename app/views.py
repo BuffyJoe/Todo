@@ -82,19 +82,7 @@ def edit(request, pk):
      context = {
          'form': form,
      }
-     return render(request, 'edit.html', context)
-
-def progress(request):
-    today = timezone.localtime(timezone.now())
-    activities = ToDo.objects.filter(end=today, owner=request.user)
-    if activities:
-        activities.update(expired=True)
-    context = {
-        'activities' : activities,
-        'today' : today, 
-    }
-    return render(request, 'percent.html', context)
-    
+     return render(request, 'edit.html', context)    
 def create(request):
      form = CreateToDo()
      if request.method == 'POST':

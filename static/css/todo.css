@@ -1,0 +1,196 @@
+a{
+    text-decoration: none;
+    color: blue;
+}
+body{
+    background-color: whitesmoke;
+    position: relative;
+}
+
+.div{
+position: absolute;
+right: 20px;
+}
+.div input{
+font-size: 20px;
+padding: 10px;
+}
+
+.all-create{
+position: absolute;
+margin-left: 50px;
+margin-top: 10px;
+text-align: left;
+border: solid black;
+width: max-content;
+padding: 30px;
+padding-right: 20px;
+background-color: lightblue;
+}
+h1{
+text-decoration: none;
+font-family: Georgia, 'Times New Roman', Times, serif;
+color:black;
+font-size: 20px;
+text-align: center;
+}
+
+
+.date{
+position: absolute;
+top: 0;
+}
+
+p{
+border-bottom: solid black;
+}
+label{
+color: red;
+font-size: 20px;
+}
+.small{
+font-size: 15px;
+}
+
+.all{
+position: absolute;
+margin-left: 225px;
+text-align: left;
+border: solid black;
+width: max-content;
+padding: 30px;
+padding-right: 20px;
+background-color: lightblue;
+}
+
+h1{
+text-decoration: none;
+font-family: Georgia, 'Times New Roman', Times, serif;
+color:black;
+font-size: 20px;
+text-align: center;
+}
+
+.my-form{
+    margin-top: 100px;
+    margin-left: 35%;
+    border: black solid;
+    width: fit-content;
+    padding: 50px;
+    background-color: lightblue;    
+}
+
+.my-form .al{
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+.my-form > h1{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.form{
+    background-color: lightblue;
+    color: black;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    grid-area: form;
+    padding-bottom: 20px;
+    
+}
+.form-item{
+    border: solid;
+    border-bottom: none;
+    border-top: none;
+    padding: 0px 20px 10px 20px;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    box-shadow: 3px 3px 3px black;
+}
+
+.form-item input{
+    width: 20rem;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+}
+
+.form-item input:focus{
+    width: 20rem;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
+
+.first-form{
+    border-top: solid;
+    margin-top: 20px;
+    /* padding-top: 10px; */
+}
+.first-form h5{
+    font-size: 20px;
+    color: blue;
+    text-decoration: dashed;
+    padding-bottom: 0%;
+}
+.first-form h5:hover{
+    color: red;
+}
+.end-form{
+    border-bottom: solid;
+    padding-bottom: 30px;
+    text-align: left;
+}
+.end-form:hover{
+    text-decoration: none;
+    font-size: initial;
+}
+::-webkit-input-placeholder{
+    text-align: center;
+    opacity: 0.8;
+    font-size: 17px;
+    color: white;
+}
+.end-form-div{
+    padding-left: 30px;
+}
+.end-form-div input{
+    width: auto;
+    justify-content: left;
+    background-color: white;
+    color: black;
+}
+
+button{
+    height: 2rem;
+    width: 30%;
+    color: black;
+    background-color: white;
+}
+
+button:hover{
+    background-color: green;
+    color: white;
+}
+
+.allin{
+    position: absolute;
+    margin-left: 225px;
+    text-align: left;
+    border: solid black;
+    width: max-content;
+    padding: 30px;
+    padding-right: 20px;
+    background-color: lightblue;
+    }
+
+    .allin p{
+        border: none;
+    }
+    

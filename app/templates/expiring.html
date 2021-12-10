@@ -1,49 +1,7 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content %}
-
-<style>
-    a{
-                text-decoration: none;
-                color: blue;
-            }
-    body{
-                background-color: whitesmoke;
-                position: relative;
-            }
-            
-    .div{
-        position: absolute;
-        right: 20px;
-    }
-    .div input{
-        font-size: 20px;
-        padding: 10px;
-    }
-    
-    .all{
-        position: absolute;
-        margin-left: 225px;
-        text-align: left;
-        border: solid black;
-        width: max-content;
-        padding: 30px;
-        padding-right: 20px;
-        background-color: lightblue;
-    }
-    h1{
-        text-decoration: none;
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        color:black;
-        font-size: 20px;
-        text-align: center;
-    }
-    
-    .date{
-        position: absolute;
-        top: 0;
-    }
-        </style>
+<link rel="stylesheet" href="{% static 'css/todo.css' %}">
 <body>
 
     <div class="all">
@@ -60,7 +18,9 @@
     </p>
     {% endfor %} 
     </ul>
-
+    {% else %}
+    <h1>There are no Ongoing for Today </h1>
+    {% endif %}
     <h1>Completed tasks for <br> {{today.date}}</h1>  <hr>
     <ul>
     {% for activity in all_activities %}
@@ -70,6 +30,7 @@
     <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
     <small> <b> {{activity.description}} </b> </small>
     </p>
+    
     {% endif %}
     {% endfor %}
     </ul>
@@ -91,10 +52,6 @@
     {% endfor %}
     <h3> You are {{percent}}% done</h3>
 </ul>
-{% else %}
-<h1>There are no Tasks for Today </h1>
-<a href="{% url 'home' %}">Go Back </a>
-{% endif %}
 </div>
 {% endblock %}
 </body>
