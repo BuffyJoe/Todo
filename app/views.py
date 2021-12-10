@@ -17,7 +17,10 @@ def index(request):
     today = timezone.localtime(timezone.now())
     todo = ToDo.objects.filter(owner=request.user).count()
     complete = ToDo.objects.filter(completed=True, owner=request.user).count()
-    percent = complete * 100 // todo
+    try:
+        percent = complete * 100 // todo
+    except:
+        percent = 0
     # expired = ToDo.objects.expired()
     if request.method == 'POST':
         try:
