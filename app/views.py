@@ -158,13 +158,16 @@ def register(request):
           return redirect('home')
      form = UserCreationForm()
      if request.method == 'POST':
-          form = UserCreationForm(request.POST)
-          if form.is_valid():
-               user = form.save(commit=False)
-               user.username = user.username.lower()
-               user.save()
-               login(request, user)
-               return redirect('home')
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            login(request, user)              
+            return redirect('home')
+        else:
+            form = UserCreationForm(request.POST)
+        
      return render(request, 'register.html', {'form' : form})
 
 
