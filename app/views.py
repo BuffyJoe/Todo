@@ -40,7 +40,7 @@ def index(request):
             except:
                 return redirect('home')
     today = timezone.localtime(timezone.now())
-    expiredd = ToDo.objects.filter(end=today, owner=request.user)
+    expiredd = ToDo.objects.filter(end__lt=today, owner=request.user)
     if expiredd:
         expiredd.update(expired=True)
     
@@ -100,10 +100,10 @@ def create(request):
      if request.method == 'POST':
         form = CreateToDo(request.POST)
         if form.is_valid():
-          form = form.save(commit=False)
-          form.owner = request.user
-          form.save()
-          return redirect('home')
+            form = form.save(commit=False)
+            form.owner = request.user
+            form.save()
+            return redirect('home')
      context = {
          'form': form, 
         }
