@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/todo.css' %}">
-<form action="" method="post">
+<form action="" method="post" class="form-group">
     {% csrf_token %}
-    Do you want to delete {{obj}}
-    <input type="Submit" value="Yes" name="" id=""> <a href="{% url 'home' %}"> NO </a>
+    <h3>Do you want to delete {{obj}}? </h3>
+    <button type="submit" value="submit" class="btn btn-danger">Yes</button>
+    <a href="{% url 'home' %}" class="btn btn-success" style="text-decoration: none; color: white;"> NO </a>
+     
 </form>
 {% endblock %}

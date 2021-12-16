@@ -2,20 +2,25 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/todo.css' %}">
 
-<body>
-    <div class="all-create">
+    <div class="">
         <h1>Create new Task</h1>
     <form action="" method="post">
         {% csrf_token %}
-        <label for="todo"> Task </label> <br>
-        <input type="text" name="todo" placeholder="Activity Name"><br> <br> <br>
+        <div class="mb-3">
+        <label for="todo" class="form-label"> Task </label> <br>
+        <input type="text" name="todo" placeholder="Activity Name" class="form-control w-50">
+        </div>
+        <div class="form-group">
         <label for="date"> Set End-Date</label>  <br>
-        <input type="date" name="end">  <br><br><br>
-        <label for="description">Task Info (optional)</label> <br>
-        <textarea name="description" id="" cols="50" rows="10" placeholder="any further information"></textarea>
-        <button type="submit" value="submit">Create</button>
+        <input type="date" name="end">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Task Info (optional)</label> <br>
+        <textarea name="description"rows="3" placeholder="any further information" class="form-control w-75"></textarea>
+    </div>
+        <button type="submit" value="submit" class="btn btn-success">Create</button>
     </form>
+    
 </div>
 {% endblock %}

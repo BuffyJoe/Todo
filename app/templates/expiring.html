@@ -1,28 +1,27 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/todo.css' %}">
 <body>
 
-    <div class="all">
+    <div class="form-control">
     {% if activities %}
 
-    <h1>Undone tasks for <br> {{today.date}} are: </h1>
+    <h3>Undone tasks for {{today.date}} are: </h3>
     <hr>
-    <ul>
+    
     {% for activity in activities %}
    <p>
-    <large> <b> <a href="{% url 'edit' activity.id %}"> {{activity.todo}} </a> </b> </large> {% if activity.completed != True and activity.expired == False %} <span> <small> <i> . (ongoing)</i></small></span> {% endif %}<br> 
+       <a href="{% url 'edit' activity.id %}">edit</a>
+    <large> <b> {{activity.todo}} </b> </large> {% if activity.completed != True and activity.expired == False %} <span> <small> <i> . (ongoing)</i></small></span> {% endif %}<br> 
     <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
     <small> <b> {{activity.description}} </b> </small>
     </p>
     {% endfor %} 
-    </ul>
+    
     {% else %}
     <h1>There are no Ongoing for Today </h1>
     {% endif %}
-    <h1>Completed tasks for <br> {{today.date}}</h1>  <hr>
-    <ul>
+    <h3>Completed tasks for {{today.date}}</h3>  <hr>
     {% for activity in all_activities %}
     {% if activity.completed == True %}
     <p>
@@ -33,10 +32,9 @@
     
     {% endif %}
     {% endfor %}
-    </ul>
 
-    <h1>All tasks for {{today.date}}</h1> <hr>
-    <ul>
+
+    <h3> All tasks for {{today.date}}</h3> <hr>
     {% for activity in all_activities %}
     
     <p>
@@ -50,8 +48,9 @@
     </p>
     
     {% endfor %}
-    <h3> You are {{percent}}% done</h3>
-</ul>
+    <div class="progress" style="height: 30px;">
+        <div class="progress-bar progress-bar-striped {% if percent >= 0 and percent <= 25 %} bg-danger {% elif percent >= 26 and percent <= 74 %} bg-warning {% elif percent >= 75 %} bg-success {% endif %}" role="progressbar" style="width: {{percent}}%;" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100">{{percent}}% done</div>
+      </div>
 </div>
 {% endblock %}
 </body>

@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/todo.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <body>
         <span class="date" >
             <form method="post" >
@@ -15,11 +15,12 @@
     
 <br>
     
-    <div class="all">
+    <div class="container">
         <span> <b> To view all (Completed/Expired) Tasks for: {{today.date}} <br> <a href="{% url 'exp' %}">Click Here</a> </b></span>
         {% if activities %}
+        <div class="row justify-contentcenter">
         <h1>All Activities </h1> <hr>
-    <table>
+    <div class="form-group">
     
     {% for activity in activities %}
     <p>
@@ -37,9 +38,11 @@
     <small> <b> {{activity.description}} </b> </small>
     </p> 
     {% endfor %}
-    <h3> You are {{percent}}% done</h3>
-    </ul>
-    </table>
+    <div class="progress" style="height: 30px;">
+        <div class="progress-bar progress-bar-striped {% if percent >= 0 and percent <= 25 %} bg-danger {% elif percent >= 26 and percent <= 74 %} bg-warning {% elif percent >= 75 %} bg-success {% endif %}" role="progressbar" style="width: {{percent}}%;" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100">{{percent}}% done</div>
+      </div>
+</div>
+
     <br>
     <hr>
     <h1>Uncompleted Activities </h1> <hr>
@@ -52,7 +55,7 @@
     <small> <a href="{% url 'delete' activity.id %}"> Delete </a> </small> <br>
     <large> <b> {{activity.todo}} </b> </large> <span> <small> <i> . (ongoing)</i></small></span><br> 
     <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
-    <small> <b> {{activity.description}} </b> </small> <br>
+    <small class="text-break"> <b> {{activity.description}} </b> </small> <br>
     </p>
     </table>
 
@@ -92,6 +95,7 @@
     {% endfor %}
 
     {% endif %}
+</div>
 </div>
 </body>
 </html>

@@ -1,13 +1,13 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/todo.css' %}">
 <body>
-    <div class="allin">
+    <div class="form-control">
     <form action="" method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit" value="submit">Edit</button>
+        <button type="submit" value="submit" class="btn btn-success">Edit</button>
+    
     </form>
 </div>
 </body>

@@ -2,34 +2,34 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/todo.css' %}">
 
 {% if login %}
-<form action="" method="post" class="my-form">
+<form action="" method="post" class="">
     {% csrf_token %}
     <h1>Welcome</h1>
-    <div>
-    <label for="username"> Username </label>
-    <input type="text" name="username" placeholder="Enter Username....">
-    </div>
+    <div class="input-group mb-3 w-50">
+        <span class="input-group-text" id="basic-addon1">@</span>
+        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+      </div>      
+    
+      <div class="input-group mb-3 w-50">
+        <span class="input-group-text" id="basic-addon1">key</span>
+        <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      
+      <button type="submit" value="submit" class="btn btn-success">Log-in</button> 
+      <a href="{% url 'home' %}" class="al">Back</a> <br>
     <br>
-    <div>
-    <label for="username"> Password </label>
-    <input type="password" name="password" placeholder="Password.......">
-    </div>
-    <br>
-    <input type="submit" value="Log-in"> 
-    <a href="{% url 'home' %}" class="al">Back</a> <br>
-    <br> <br>
     <a href="{% url 'sign-up' %}"><i> Don't have an account? Sign-up instead </i></a>
 </form>
 {% endif %}
 
 {% if logout %}
-<form action="" method="post" class="my-form">
+<form action="" method="post" class="form-group">
     {% csrf_token %}
     <h4>Log-out @{{request.user.username}}</h4>
-    <input type="SUbmit" value="Log-out"> <a href="{% url 'home' %}" class="al">Back</a>
+    <button type="submit" value="submit" class="btn btn-danger">Log-out</button>
+     <a href="{% url 'home' %}" class="al">Back</a>
 </form>
 {% endif %}
 

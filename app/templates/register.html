@@ -1,13 +1,32 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/todo.css' %}">
 
-<div class="allin">
+
+<div class="form-group">
     <form action="" method="post">
         {% csrf_token %}
-        {{form.as_p}}
-        <input type="Submit">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Username</label>
+            <input type="text" class="form-control w-75" id="exampleFormControlInput1" placeholder="username" name="username">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">Password</label>
+            <input type="password" class="form-control w-75" id="exampleFormControlInput2" placeholder="**********" name="password1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput3" class="form-label">Confirm password</label>
+            <input type="password" class="form-control w-75" id="exampleFormControlInput3" placeholder="**********" name="password2">
+          </div>
+          <button type="submit" value="submit" class="btn btn-success">Sign-up</button>
+    
+        {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="alert alert-danger w-50"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
     </form>
 </div>
 {% endblock %}

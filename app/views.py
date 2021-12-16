@@ -90,7 +90,7 @@ def deletetask(request, pk):
         return redirect('home')
     
     context = {
-
+            'obj' : obj
     }
     return render(request, 'delete.html', context)
 def expiring(request):
@@ -141,10 +141,10 @@ def logoutpage(request):
 
 
 def register(request):
-     if request.user.is_authenticated:
+    if request.user.is_authenticated:
           return redirect('home')
-     form = registerform()
-     if request.method == 'POST':
+    form = registerform()
+    if request.method == 'POST':
         form = registerform(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
@@ -153,8 +153,9 @@ def register(request):
             login(request, user)              
             return redirect('home')
         else:
-            messages.error(request, 'User does not exist')
+            message = messages.error(request, 'error occured while submitting form')
+            return render(request, 'register.html', {'form' : form, 'message' : message})
         
-     return render(request, 'register.html', {'form' : form})
+    return render(request, 'register.html', {'form' : form})
 
 
