@@ -72,16 +72,27 @@ def edit(request, pk):
      return render(request, 'edit.html', context)    
 def create(request):
      form = CreateToDo()
+     today = timezone.localtime(timezone.now())
+     context = {
+         'form': form, 
+        }
      if request.method == 'POST':
         form = CreateToDo(request.POST)
+        date = request.POST.get('end')
+        try:
+            if date < str(today):
+                messages.error(request, 'set future date')
+                return render(request, 'create.html', context)
+        except:
+            pass
         if form.is_valid():
             form = form.save(commit=False)
             form.owner = request.user
             form.save()
-            return redirect('home')
-     context = {
-         'form': form, 
-        }
+            messages.success(request, 'task added')
+            # return redirect('home')
+        else:
+            messages.error(request, 'invalid task')
      return render(request, 'create.html', context)
 def deletetask(request, pk):
     obj = ToDo.objects.get(id=pk)
@@ -114,24 +125,27 @@ def expiring(request):
 
     
 def Loginpage(request): 
-     if request.user.is_authenticated:
-          return redirect('home')
-     if request.method == 'POST':
-          username = request.POST.get('username')
-          password = request.POST.get('password')
 
-          try:
-               user = User.objects.get(username=username)
-          except:
-               messages.error(request, 'User does not exist')
+    if request.user.is_authenticated:
+        return redirect('home')
+    context = {'login' : True}
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-          user = authenticate(request, username=username, password=password) 
-          if user is not None:
-               login(request, user)
-               return redirect('home')
-     
-     context = {'login' : True}
-     return render(request, 'login.html', context)
+        try:
+            user = User.objects.get(username=username)
+        except:
+            pass
+
+        user = authenticate(request, username=username, password=password) 
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'incorrect Username or password')
+            
+    return render(request, 'login.html', context)
      
 def logoutpage(request):
      if request.method == 'POST':
@@ -155,7 +169,6 @@ def register(request):
         else:
             message = messages.error(request, 'error occured while submitting form')
             return render(request, 'register.html', {'form' : form, 'message' : message})
-        
     return render(request, 'register.html', {'form' : form})
 
 

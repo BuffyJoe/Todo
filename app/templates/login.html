@@ -4,6 +4,15 @@
 {% block content %}
 
 {% if login %}
+<div class="form-group">
+{% if messages %}
+<ul class="messages" style="padding-top: 20px;">
+    {% for message in messages %}
+    <li{% if message.tags %} class="alert alert-danger w-50"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 <form action="" method="post" class="">
     {% csrf_token %}
     <h1>Welcome</h1>
@@ -21,6 +30,7 @@
     <br>
     <a href="{% url 'sign-up' %}"><i> Don't have an account? Sign-up instead </i></a>
 </form>
+</div>
 {% endif %}
 
 {% if logout %}

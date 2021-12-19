@@ -3,7 +3,19 @@
 
 {% block content %}
 
-    <div class="">
+    <div class="form-group">
+        
+{% if messages %}
+<ul class="messages" style="padding-top: 20px;">
+    {% for message in messages %}
+    {% if message.tags == 'error' %}
+    <li{% if message.tags %} class="alert alert-danger w-50"{% endif %}>{{ message }}</li>
+    {% else %}
+    <li{% if message.tags %} class="alert alert-success w-50"{% endif %}>{{ message }}</li>
+    {% endif %}
+   {% endfor %}
+</ul>
+{% endif %}
         <h1>Create new Task</h1>
     <form action="" method="post">
         {% csrf_token %}
