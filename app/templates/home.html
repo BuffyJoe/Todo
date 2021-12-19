@@ -18,35 +18,48 @@
     <div class="container">
         <span> <b> To view all (Completed/Expired) Tasks for: {{today.date}} <br> <a href="{% url 'exp' %}">Click Here</a> </b></span>
         {% if activities %}
+        <p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            All Activity
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
         <div class="row justify-contentcenter">
-        <h1>All Activities </h1> <hr>
-    <div class="form-group">
+            <div class="form-group">
     
-    {% for activity in activities %}
-    <p>
-    {% if activity.expired == False and activity.completed == False%} 
-    <small> <a href="{% url 'edit' activity.id %}"> Edit </a> </small>
-    <large> <b>.</b></large>
-    {% endif %} 
-    <small> <a href="{% url 'delete' activity.id %}"> Delete </a> </small> <br>
-    <large> <b>  {{activity.todo}}  </b> </large> 
-    {% if activity.completed == True %} <span> <small> <i> . (completed)</i></small></span>
-    {% elif activity.expired == True and activity.completed == False%} <span> <small> <i> . (expired)</i></small></span>
-    {% elif activity.expired == False and activity.completed == False%} <span> <small> <i> . (ongoing)</i></small></span>
-    {% endif %}<br> 
-    <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
-    <small> <b> {{activity.description}} </b> </small>
-    </p> 
-    {% endfor %}
-    <div class="progress" style="height: 30px;">
-        <div class="progress-bar progress-bar-striped {% if percent >= 0 and percent <= 25 %} bg-danger {% elif percent >= 26 and percent <= 74 %} bg-warning {% elif percent >= 75 %} bg-success {% endif %}" role="progressbar" style="width: {{percent}}%;" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100">{{percent}}% done</div>
-      </div>
+                {% for activity in activities %}
+                <p>
+                {% if activity.expired == False and activity.completed == False%} 
+                <small> <a href="{% url 'edit' activity.id %}"> Edit </a> </small>
+                <large> <b>.</b></large>
+                {% endif %} 
+                <small> <a href="{% url 'delete' activity.id %}"> Delete </a> </small> <br>
+                <large> <b>  {{activity.todo}}  </b> </large> 
+                {% if activity.completed == True %} <span> <small> <i> . (completed)</i></small></span>
+                {% elif activity.expired == True and activity.completed == False%} <span> <small> <i> . (expired)</i></small></span>
+                {% elif activity.expired == False and activity.completed == False%} <span> <small> <i> . (ongoing)</i></small></span>
+                {% endif %}<br> 
+                <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
+                <small> <b> {{activity.description}} </b> </small>
+                </p> 
+                {% endfor %}
+                <div class="progress" style="height: 30px;">
+                    <div class="progress-bar progress-bar-striped {% if percent >= 0 and percent <= 25 %} bg-danger {% elif percent >= 26 and percent <= 74 %} bg-warning {% elif percent >= 75 %} bg-success {% endif %}" role="progressbar" style="width: {{percent}}%;" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100">{{percent}}% done</div>
+                </div>
+                </div>
 </div>
-
+</div>
+</div>
     <br>
     <hr>
-    <h1>Uncompleted Activities </h1> <hr>
-    <table>
+    <p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+            Uncompleted Activity
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample2">
+          <div class="card card-body">
     {% for activity in activities %}
     {% if activity.completed != True and activity.expired == False %}
         <p>
@@ -57,15 +70,19 @@
     <small>Duration: {{activity.start}} - {{activity.end}} </small> <br>
     <small class="text-break"> <b> {{activity.description}} </b> </small> <br>
     </p>
-    </table>
-
     {% endif %}
     {% endfor %}
-    </ul>
-    <hr>
+    </div>
+    </div> <br><hr>
     
-    <h1>Completed Activities </h1> <hr>
-    <table>
+
+    <p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+            Completed Activity
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample3">
+          <div class="card card-body">
     {% for activity in activities %}
     {% if activity.completed == True %}
     <p>
@@ -77,10 +94,17 @@
     </p>
     {% endif %}
     {% endfor %}
-    </ul>
-    <hr>
+</div>
+</div> <br> <hr>
 
-    <h1>Expired Activities </h1> <hr>
+<p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
+        Expired Activity
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample4">
+      <div class="card card-body">
+
     <table>
     {% for activity in activities %}
     {% if activity.expired == True and activity.completed == False %}
@@ -93,9 +117,9 @@
 </table>
     {% endif %}
     {% endfor %}
-
-    {% endif %}
 </div>
+</div>
+    {% endif %}
 </div>
 </body>
 </html>

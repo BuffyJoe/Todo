@@ -1,17 +1,15 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-
+<div class="row">
+  <div class="col-md-4 col-sm-4"></div>
+  <div class="col-md-5 col-sm-8">
+    <br><br>
 {% if messages %}
 {% for message in messages %}
-
-  <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <strong class="me-auto"> error </strong>
-      
-    <div class="toast-body">{{ message }}</div>
-      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="close"> </button>
-    </div>
+<div class="alert alert-warning alert-dismissible fade show bg-danger w-75" role="alert" style="color: white;">
+  <strong>Error!</strong> {{message}}.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {% endfor %}
 {% endif %}
@@ -34,5 +32,7 @@
           <button type="submit" value="submit" class="btn btn-success">Sign-up</button>
     
     </form>
+</div>
+</div>
 </div>
 {% endblock %}
